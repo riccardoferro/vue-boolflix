@@ -9,10 +9,9 @@
 
 // import axios
 import axios from 'axios';
-
 // import apikey 
-import apikey from "./apikey"
-
+import api from "./apikey"
+// import components
 import Header from "@/components/Header.vue"
 import Main  from "@/components/Main.vue"
 
@@ -29,7 +28,7 @@ export default {
 
         // we need some datas to do the request data from the API that we will send to main
         apiUrl: "https://api.themoviedb.org/3/search/",
-        apiKey: apikey,
+        apiKey: api,
           // query is a var with word filter to search the films/series
         query:"",
 
@@ -63,6 +62,7 @@ export default {
 
               this.queryApi("movie").then((response)=>{
                   console.log(response)
+                  //here the var movie take the datas movies from the API
                   this.movies = response.data.results
                   // console.log("my movies", this.movies)
               });
@@ -90,8 +90,14 @@ export default {
           
       },
   },
+  
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 </style>

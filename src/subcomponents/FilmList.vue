@@ -1,6 +1,6 @@
 <template>
     <div class="row d-flex">
-        <div v-for="movie in movies" :key="movie.id" class="col-4 card align-items-center">
+        <div v-for="movie in movies" :key="movie.id" class="col-4 col-xl-3 card align-items-center">
 
             <h4>{{movie.title}}</h4>
             <div>{{movie.original_title}}</div>

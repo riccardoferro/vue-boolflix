@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <Header @text="searchtext"/>
-      <Main/>
+      <Main :movies="movies"/>
   </div>
 </template>
 
@@ -9,8 +9,12 @@
 
 // import axios
 import axios from 'axios';
+
 // import apikey 
-import api from "./apikey"
+import {api} from "./apikey.js"
+// oppure posso fare cosi import api from "./apikey.js" e nel js dovra' esserci..
+
+
 // import components
 import Header from "@/components/Header.vue"
 import Main  from "@/components/Main.vue"
@@ -95,9 +99,14 @@ export default {
 </script>
 
 <style lang="scss" >
+
+// import bootstrap
+@import "~bootstrap/scss/bootstrap";
+
   *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
+  
 </style>

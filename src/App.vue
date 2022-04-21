@@ -10,6 +10,9 @@
 // import axios
 import axios from 'axios';
 
+// import apikey 
+import apikey from "./apikey"
+
 import Header from "@/components/Header.vue"
 import Main  from "@/components/Main.vue"
 
@@ -26,7 +29,7 @@ export default {
 
         // we need some datas to do the request data from the API that we will send to main
         apiUrl: "https://api.themoviedb.org/3/search/",
-        apiKey: "ea411c0972d93a8101caef5a20cb11b1",
+        apiKey: apikey,
           // query is a var with word filter to search the films/series
         query:"",
 

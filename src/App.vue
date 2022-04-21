@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <Header @text="searchtext"/>
-      <Main :movies="movies"/>
+      <Main :movies="movies" :series="series"/>
   </div>
 </template>
 
@@ -55,6 +55,8 @@ export default {
       searchtext(inputText) {
           this.query = inputText;
           this.queryMovies();
+          this.queryTV();
+
       },
 
       //this method take the movie data and insert them in the var movies
@@ -65,18 +67,32 @@ export default {
               this.searching = true;
 
               this.queryApi("movie").then((response)=>{
-                  console.log(response)
+                  console.log("movies",response)
                   //here the var movie take the datas movies from the API
                   this.movies = response.data.results
+
                   // console.log("my movies", this.movies)
               });
           }
       },
 
       // this method take series data
-      // queryTV(){
-      //   this.queryApi("tv");
-      // },
+      queryTV(){
+        
+        this.searching = false;
+        
+        if (!this.searching && this.query.length > 0){
+            // console.log("ciao")
+              // setting searching to true so we can't ask for another api once aske one
+              this.searching = true;
+
+              this.queryApi("tv").then((response)=>{
+                  console.log("series",response)
+                  //here the var movie take the datas movies from the API
+                  this.series = response.data.results
+              });
+          }
+      },
 
       // these method call the API if the query length is at least 1 and if we are not searching
       queryApi(genre){
@@ -108,5 +124,5 @@ export default {
     padding: 0;
     box-sizing: border-box;
   }
-  
+
 </style>

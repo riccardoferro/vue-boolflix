@@ -1,10 +1,11 @@
 <template>
-    <div class="container">
-        <h2>FILM</h2>
-        <FilmList :movies="movies"/>
-        <h2>SERIE</h2>
-        <SerieList :series="series"/>
-    </div>
+    <main>
+        <div class="container">
+          <!-- here we call the component film list and serie list that will show the datas -->
+            <FilmList :movies="movies"/>
+            <SerieList :series="series"/>
+        </div>
+    </main>
 </template>
 
 <script>
@@ -27,6 +28,9 @@ export default {
 
 <style lang="scss" scoped>
 
-
+main {
+  background-color: grey;
+  min-height: 100vh;
+}
 
 </style>

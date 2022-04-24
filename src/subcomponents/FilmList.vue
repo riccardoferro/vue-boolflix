@@ -1,6 +1,7 @@
 <template>
     <div class="row w-75 m-auto d-flex">
-        <div v-for="movie in movies" :key="movie.id" class="col-4 col-xl-3 card ">
+        <h2>FILM</h2>
+        <div v-for="movie in movies" :key="movie.id" class="col-4 col-xl-3 card-rf ">
             <img :src="takeImgPoster(movie.poster_path)" class="img-fluid"/>
             <div class="text-post-rf">
                 <h5>Titolo: {{movie.title}}</h5>
@@ -12,15 +13,20 @@
                 class="d-block"
                 > -->
                 <div> {{movie.original_language}} </div>
-                <div> Voto: {{takeVote(movie.vote_average)}}</div>
+                <div>
+                    <span>Voto: </span>
+                    <i v-for="(m,index) in takeVote(movie.vote_average)" :key="index" class="fa-solid fa-star">
+                    </i>
+                     <i v-for="(m,index) in (5 - takeVote(movie.vote_average))" :key="index" class="fa-regular fa-star">
+                    </i>
+                </div>
+                   
             </div>
-            <i class="fa-solid fa-star w-25"></i>
         </div>
     </div>
 </template>
 
 <script>
-
 /*
 
 adult: false
@@ -57,14 +63,10 @@ export default {
       takeVote(vote){
       // console.log(Math.round(7.2 / 2));
       const newVote = Math.round(vote / 2);
+      console.log(newVote);
       return newVote;
-    }
+      }
   },
-
-  computed: {
-      
-  }
-
 }
 
 </script>
@@ -72,9 +74,11 @@ export default {
 <style lang="scss" scoped>
     .row {
       color: white;
+      h2 {
+        color: black;
+      }
     }
-    .card:hover{
-
+    .card-rf:hover{
       background-color: black;
       img {
         display:none;

@@ -1,11 +1,18 @@
 <template>
-  <div class="row d-flex">
-        <div v-for="serie in series" :key="serie.id" class="col-4 col-xl-3 card align-items-center">
+  <div class="row w-75 m-auto d-flex">
+        <h2>SERIE</h2>
+        <div v-for="serie in series" :key="serie.id" class="col-4 col-xl-3 card-rf ">
             <img :src="takeImgPoster(serie.poster_path)" class="img-fluid" />
-            <h4>{{serie.name}}</h4>
-            <div>{{serie.original_name}}</div>
-            <div> {{serie.original_language}} </div>
-            <div>{{serie.vote_average}}</div>
+            <div class="text-post-rf">
+                <h5>{{serie.name}}</h5>
+                <div>{{serie.original_name}}</div>
+                <div> {{serie.original_language}} </div>
+                <div>
+                    <span>Voto: </span>
+                    <i v-for="(m,index) in takeVote(serie.vote_average)" :key="index" class="fa-solid fa-star">
+                    </i>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -36,11 +43,35 @@ export default {
   methods: {
     takeImgPoster(lastUrl){
           return "https://image.tmdb.org/t/p/original" + lastUrl ;
-      },
+    },
+    takeVote(vote){
+      // console.log(Math.round(7.2 / 2));
+      const newVote = Math.round(vote / 2);
+      console.log(newVote);
+      return newVote;
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+   .row {
+      color: white;
+      h2 {
+        color: black;
+      }
+    }
+    .card-rf:hover{
+      background-color: black;
+      img {
+        display:none;
+      }
+      .text-post-rf {
+        display: block;
+      }
+    }
+    
+    .text-post-rf {
+      display:none;
+    }
 </style>

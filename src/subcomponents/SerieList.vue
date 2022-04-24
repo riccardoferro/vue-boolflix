@@ -1,17 +1,17 @@
 <template>
   <div class="row d-flex">
         <div v-for="serie in series" :key="serie.id" class="col-4 col-xl-3 card align-items-center">
-
+            <img :src="takeImgPoster(serie.poster_path)" class="img-fluid" />
             <h4>{{serie.name}}</h4>
             <div>{{serie.original_name}}</div>
             <div> {{serie.original_language}} </div>
             <div>{{serie.vote_average}}</div>
-            
         </div>
     </div>
 </template>
 
 <script>
+
 /*
 backdrop_path: "/rrBtfYvuTAR2BsCVgl31LVSenRh.jpg"
 first_air_date: "2011-07-01"
@@ -32,6 +32,11 @@ export default {
   name: "SerieList",
   props: {
     series: Array,
+  },
+  methods: {
+    takeImgPoster(lastUrl){
+          return "https://image.tmdb.org/t/p/original" + lastUrl ;
+      },
   }
 }
 </script>

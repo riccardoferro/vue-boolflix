@@ -7,6 +7,7 @@
 
 <script>
 
+
 // import axios
 import axios from 'axios';
 
@@ -115,6 +116,7 @@ export default {
 </script>
 
 <style lang="scss" >
+
 
 // import bootstrap
 @import "~bootstrap/scss/bootstrap";

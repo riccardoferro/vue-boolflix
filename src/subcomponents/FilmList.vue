@@ -1,18 +1,20 @@
 <template>
-    <div class="row d-flex">
-        <div v-for="movie in movies" :key="movie.id" class="col-4 col-xl-3 card align-items-center">
-
-            <h4>{{movie.title}}</h4>
-            <div>{{movie.original_title}}</div>
-            <!-- <img 
-            v-if=" movie.original_language !== 'en' "
-            :src="takeFlagLang(movie.original_language)"
-            :alt="flag" 
-            class="d-block"
-            > -->
-            <div> {{movie.original_language}} </div>
-            <div>{{movie.vote_average}}</div>
-            
+    <div class="row w-75 m-auto d-flex">
+        <div v-for="movie in movies" :key="movie.id" class="col-4 col-xl-3 card ">
+            <img :src="takeImgPoster(movie.poster_path)" class="img-fluid"/>
+            <div class="text-post-rf">
+                <h5>Titolo: {{movie.title}}</h5>
+                <div>Titolo originale: {{movie.original_title}}</div>
+                <!-- <img 
+                v-if=" movie.original_language !== 'en' "
+                :src="takeFlagLang(movie.original_language)"
+                :alt="flag" 
+                class="d-block"
+                > -->
+                <div> {{movie.original_language}} </div>
+                <div> Voto: {{takeVote(movie.vote_average)}}</div>
+            </div>
+            <i class="fa-solid fa-star w-25"></i>
         </div>
     </div>
 </template>
@@ -42,13 +44,21 @@ export default {
   name: "FilmList",
 
   props: {
-    movies: Array
+      movies: Array
   },
   
   methods: {
-    takeFlagLang(lang) {
-        return "https://www.kidlink.org/icons/f0-"+ lang +".gif "
-      }
+      takeFlagLang(lang) {
+          return "https://www.kidlink.org/icons/f0-"+ lang +".gif "
+        },
+      takeImgPoster(lastUrl){
+          return "https://image.tmdb.org/t/p/original" + lastUrl ;
+      },
+      takeVote(vote){
+      // console.log(Math.round(7.2 / 2));
+      const newVote = Math.round(vote / 2);
+      return newVote;
+    }
   },
 
   computed: {
@@ -60,7 +70,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    img {
-      width:20px;
+    .row {
+      color: white;
+    }
+    .card:hover{
+
+      background-color: black;
+      img {
+        display:none;
+      }
+      .text-post-rf {
+        display: block;
+      }
+    }
+
+    .text-post-rf {
+      display:none;
     }
 </style>
